@@ -7,7 +7,8 @@ import android.util.Log;
 public class MyIntentService extends IntentService {
 
     public MyIntentService() {
-        super("MyIntentService"); // 调用父类的有参构造函数
+        // 调用父类的有参构造函数
+        super("MyIntentService");
     }
 
     @Override
