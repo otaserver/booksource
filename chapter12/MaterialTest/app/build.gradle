@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "com.example.materialtest"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
     }
@@ -20,12 +20,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:design:24.2.1'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile 'com.android.support:cardview-v7:24.2.1'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+//    navigatorView依赖
+    implementation 'com.android.support:design:26.1.0'
+//    图片圆形化的类库，常用于头像。
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+//    主界面的卡片视图及滚动列表。
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+//    图片加载库，可以加载本地或网络图片。
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
 }
