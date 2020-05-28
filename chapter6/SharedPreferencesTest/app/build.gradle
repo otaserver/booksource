@@ -21,19 +21,17 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-//    androidTestImplementation 'androidx.test:core:1.2.0'
-
+    //    androidTestImplementation 'androidx.test:core:1.2.0'
     implementation "androidx.appcompat:appcompat:$ANDROIDX_LIBRARY_VERSION"
-
-//    仿照官网自己加入的代码
-    implementation "org.permissionsdispatcher:permissionsdispatcher:4.6.0"
+    //    仿照官网自己加入的代码
+    implementation 'org.permissionsdispatcher:permissionsdispatcher:4.6.0'
     annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.6.0"
-
     //Gson序列号对象
     implementation 'com.google.code.gson:gson:2.8.5'
-
+    implementation files('../libs/com.otaserver.androidUtil.1.0.3.jar')
+//    compile files('libs/dom4j-1.6.1.jar')
 }
