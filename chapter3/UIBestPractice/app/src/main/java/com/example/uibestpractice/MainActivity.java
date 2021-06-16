@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+//ide可以自动帮助生成，不用自己import！
+import com.example.uibestpractice.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,36 +17,38 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Msg> msgList = new ArrayList<Msg>();
 
-    private EditText inputText;
-
-    private Button send;
-
-    private RecyclerView msgRecyclerView;
-
     private MsgAdapter adapter;
+
+    //直接import没有，但是在ide中使用向导可以打出类名称来。
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        // 需要注释，否则异常。
+        // setContentView(R.layout.activity_main);
+
         initMsgs(); // 初始化消息数据
-        inputText = (EditText) findViewById(R.id.input_text);
-        send = (Button) findViewById(R.id.send);
-        msgRecyclerView = (RecyclerView) findViewById(R.id.msg_recycler_view);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        msgRecyclerView.setLayoutManager(layoutManager);
+        binding.msgRecyclerView.setLayoutManager(layoutManager);
         adapter = new MsgAdapter(msgList);
-        msgRecyclerView.setAdapter(adapter);
-        send.setOnClickListener(new View.OnClickListener() {
+        binding.msgRecyclerView.setAdapter(adapter);
+        binding.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String content = inputText.getText().toString();
+                String content = binding.inputText.getText().toString();
                 if (!"".equals(content)) {
                     Msg msg = new Msg(content, Msg.TYPE_SENT);
                     msgList.add(msg);
                     adapter.notifyItemInserted(msgList.size() - 1); // 当有新消息时，刷新ListView中的显示
-                    msgRecyclerView.scrollToPosition(msgList.size() - 1); // 将ListView定位到最后一行
-                    inputText.setText(""); // 清空输入框中的内容
+                    binding.msgRecyclerView.scrollToPosition(msgList.size() - 1); // 将ListView定位到最后一行
+                    binding.inputText.setText(""); // 清空输入框中的内容
                 }
             }
         });
